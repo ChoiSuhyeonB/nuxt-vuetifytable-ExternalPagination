@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <div id="table">
     <!-- infiniteScroll -->
     <!-- <ul v-if="$store.state.items">
       <li v-for="(todoItem, index) in $store.state.items" :key="index">
@@ -38,6 +38,7 @@
     </RecycleScroller> -->
 
     <v-data-table
+      id="table"
       :headers="headers"
       v-if="$store.state.items"
       :items="this.$store.state.items"
@@ -50,16 +51,15 @@
     ></v-data-table>
     <div class="text-center pt-2">
       <v-pagination v-model="page" :length="pageCount"></v-pagination>
+
       <v-text-field
+        height="100%"
         :value="itemsPerPage"
-        label="Items per page"
         type="number"
-        min="-1"
-        max="15"
         @input="itemsPerPage = parseInt($event, 10)"
       ></v-text-field>
     </div>
-  </section>
+  </div>
 </template>
 
 <script lang="ts">
@@ -84,7 +84,7 @@ export default class TodoList extends Vue {
   headers = [
     {
       text: "todo-name",
-
+      align: "start",
       sortable: false,
       value: "name"
     },
@@ -183,5 +183,9 @@ li {
 }
 .list:hover {
   background: rgb(235, 231, 231);
+}
+
+#table {
+  width: 100%;
 }
 </style>
