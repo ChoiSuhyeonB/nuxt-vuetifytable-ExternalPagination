@@ -1,5 +1,6 @@
 <template>
   <section>
+    <!-- infiniteScroll -->
     <!-- <ul v-if="$store.state.items">
       <li v-for="(todoItem, index) in $store.state.items" :key="index">
         <i class="checkBtn fas fa-check" aria-hidden="true"></i>
@@ -13,13 +14,13 @@
         </span>
       </li>
     </ul> -->
-
     <!-- <infinite-loading
       spinner="spiral"
       @infinite="infiniteScroll"
     ></infinite-loading> -->
 
-    <RecycleScroller
+    <!-- VirtualList -->
+    <!-- <RecycleScroller
       class="scroller"
       page-mode
       v-if="$store.state.items"
@@ -34,7 +35,30 @@
           <i class="far fa-trash-alt" aria-hidden="true"></i>
         </span>
       </div>
-    </RecycleScroller>
+    </RecycleScroller> -->
+
+    <v-data-table
+      :headers="headers"
+      v-if="$store.state.items"
+      :items="this.$store.state.items"
+      :page.sync="page"
+      :items-per-page="itemsPerPage"
+      hide-default-footer
+      class="elevation-1"
+      @page-count="pageCount = $event"
+      @click:row="clickTable($event)"
+    ></v-data-table>
+    <div class="text-center pt-2">
+      <v-pagination v-model="page" :length="pageCount"></v-pagination>
+      <v-text-field
+        :value="itemsPerPage"
+        label="Items per page"
+        type="number"
+        min="-1"
+        max="15"
+        @input="itemsPerPage = parseInt($event, 10)"
+      ></v-text-field>
+    </div>
   </section>
 </template>
 
@@ -51,12 +75,21 @@ import { Component, Vue, Prop, Emit } from "nuxt-property-decorator";
 // })
 @Component
 export default class TodoList extends Vue {
-  //props:['propsdata']
-
-  //@Prop() propsdata: string[] | undefined;
-  //@Prop() page: any | undefined;
-  //임시 배열 변수 Data입니다.
   Data: string[] = [""];
+
+  editData: string = "";
+  page: number = 1;
+  pageCount: number = 0;
+  itemsPerPage: number = 10;
+  headers = [
+    {
+      text: "todo-name",
+
+      sortable: false,
+      value: "name"
+    },
+    { text: "ID", value: "id" }
+  ];
   //computed
   get url() {
     // return "/api/todolist/" + this.$store.state.page;

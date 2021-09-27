@@ -16,7 +16,6 @@
                 <v-text-field
                   v-model="search"
                   append-icon="mdi-magnify"
-                  label="Search"
                   dense
                   outlined
                   single-line
