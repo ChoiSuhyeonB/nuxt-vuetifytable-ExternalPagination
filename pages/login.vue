@@ -18,6 +18,7 @@
     </div>
   </div>
 </template>
+
 <script>
 const Cookie = require("js-cookie");
 export default {

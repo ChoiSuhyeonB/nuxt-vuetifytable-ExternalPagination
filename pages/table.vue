@@ -1,5 +1,12 @@
 <template>
   <div>
+    <input
+      type="text"
+      class="editContent"
+      placeholder="Edit_Data"
+      @keyup.enter="EditTodo"
+      v-model="editData"
+    />
     <v-data-table
       :headers="headers"
       :items="desserts"
@@ -34,6 +41,7 @@ export default {
   },
   data() {
     return {
+      editData: "",
       page: 1,
       pageCount: 0,
       itemsPerPage: 10,
@@ -136,3 +144,15 @@ export default {
   }
 };
 </script>
+<style scoped>
+.editContent {
+  border-style: none;
+  background: linear-gradient(to right, #d0a7f7, #f5b9e8);
+  width: 10em;
+  height: 5em;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+</style>
