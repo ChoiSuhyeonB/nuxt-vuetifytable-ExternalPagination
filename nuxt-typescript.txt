@@ -1,0 +1,20 @@
+nuxt 폴더 생성
+yarn create nuxt-app todolist
+-----------------------------------
+nuxt - typescript 설정
+npm install -D @nuxt/typescript
+npm install -D nuxt-property-decorator
+
+tsconfig.json파일 업데이트
+"types":[ ]에 
+"@nuxt/config"를 추가해준다.
+
+기존  nuxt.config.js를 nuxt.config.ts로 변경한다.
+
+
+실행은 npx nuxt
+빌드 파일 실행 npx nuxt start
+
+----------------------------
+ts code
+.vue파일에 <script>는 <script lang="ts">로만 작성해야 한다. 
