@@ -8,7 +8,11 @@
       @keyup.enter="addTodo"
     />
     <span class="addContainer" @abort="addTodo">
-      <i class="addBtn fas fa-plus" aria-hidden="true"></i>
+      <i
+        class="addBtn fas fa-plus"
+        aria-hidden="true"
+        style="font-size:25px"
+      ></i>
     </span>
   </div>
 </template>
@@ -44,6 +48,16 @@ export default class TodoInput extends Vue {
 /* input:focus{
     outline:none;
   } */
+.inputBox {
+  background: rgb(179, 231, 196);
+  height: 30px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+  line-height: 30px;
+  border-radius: 20px;
+}
 .inputContent {
   background: rgb(179, 231, 196);
   width: 20em;
@@ -51,28 +65,18 @@ export default class TodoInput extends Vue {
   margin-left: auto;
   margin-right: auto;
 }
-.inputBox {
-  background: rgb(179, 231, 196);
-  height: 30px;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 30px;
-  border-radius: 20px;
-}
+
 .inputBox input {
   border-style: none;
   font-size: 0.9rem;
-  width: 50%;
+  width: 40%;
 }
 .addContainer {
   background: linear-gradient(to right, #a7f7cf, #e0fa9a);
-  display: inline;
-  width: 3rem;
-  border-radius: 0 5px 5px 0;
-  width: 50vh;
+  margin-right: -50px;
 }
 .addBtn {
   color: white;
+  width: 50px;
 }
 </style>

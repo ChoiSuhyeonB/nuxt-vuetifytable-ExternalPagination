@@ -1,9 +1,12 @@
 <template>
   <div id="app">
-    <button @click="logout">logout</button>
+    <span class="logoutBtn" type="Button" @click="logout">
+      <i class="fa fa-sign-out" aria-hidden="true" style="font-size:36px"></i>
+    </span>
+    <!-- <button @click="logout" >logout</button> -->
     <TodoHeader></TodoHeader>
     <TodoInput @addTodo="addTodo"></TodoInput>
-    <TodoList @removeTodo="removeTodo"></TodoList>
+    <TodoList @removeTodo="removeTodo" @editTodo="editTodo"></TodoList>
     <TodoFooter @removeAll="clearAll"></TodoFooter>
   </div>
 </template>
@@ -100,14 +103,20 @@ export default class MainComponent extends Vue {
     await AxiosInstance.deleteClearAll().then(res => {});
     this.fetchData();
   }
-  public async removeTodo(todoItem: string) {
+  public async removeTodo(todoItemID: string) {
     //  localStorage.removeItem(todoItem);
     //  this.todoItems.splice(index, 1)
-    this.deleteTodoItem = todoItem;
+    this.deleteTodoItem = todoItemID;
     await AxiosInstance.deleteClear(this.deleteTodoItem).then(res => {
       console.log("delete id: " + this.deleteTodoItem);
     });
     this.fetchData();
+  }
+  public async editTodo(todoItemID: string, payload: string) {
+    await AxiosInstance.edit(todoItemID, payload).then(res => {
+      console.log("edit id:" + todoItemID);
+    });
+    this, this.fetchData();
   }
 
   // infinite scroll 구현
@@ -129,7 +138,7 @@ export default class MainComponent extends Vue {
 <style>
 body {
   text-align: center;
-  background-color: #c5ecdd;
+  background-color: #dcfdd5;
   width: 100%;
 }
 ul {
@@ -145,5 +154,9 @@ button {
 }
 .shadow {
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.03);
+}
+.logoutBtn {
+  float: right;
+  margin-right: 5em;
 }
 </style>

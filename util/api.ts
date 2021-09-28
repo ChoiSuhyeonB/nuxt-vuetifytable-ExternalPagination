@@ -64,12 +64,12 @@ export default {
       }
     });
   },
-  deleteClear(deleteTodoItem: String) {
+  deleteClear(deleteTodoItemID: String) {
     return instance({
-      url: `/todolist/${deleteTodoItem}`,
+      url: `/todolist/${deleteTodoItemID}`,
       method: "delete",
       data: {
-        value: deleteTodoItem
+        value: deleteTodoItemID
       }
     });
   },
@@ -79,13 +79,23 @@ export default {
       method: "delete"
     });
   },
-  jwtCall(jwt_email:string){
+  edit(editTodoItemID: string, payload: string) {
     return instance({
-      url:'/todolist',
-      method:"get",
-      data:{
-        data_email:jwt_email
+      url: "/todolist/edit",
+      method: "post",
+      data: {
+        value: editTodoItemID,
+        value2: payload
       }
-    })
+    });
+  },
+  jwtCall(jwt_email: string) {
+    return instance({
+      url: "/todolist",
+      method: "get",
+      data: {
+        data_email: jwt_email
+      }
+    });
   }
 };

@@ -17,7 +17,9 @@ h1 {
   margin: 2.5em 0 rem;
 }
 h2 {
-  color: rgb(203, 255, 250);
+  color: rgb(61, 180, 168);
   font-weight: 1900;
+  margin-left: 5em;
+  margin-top: 1em;
 }
 </style>

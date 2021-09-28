@@ -36,6 +36,14 @@
         </span>
       </div>
     </RecycleScroller> -->
+    edit-data:
+    <input
+      type="text"
+      class="editContent"
+      placeholder="you write Edit_data"
+      @keyup.enter="EditTodo"
+      v-model="editData"
+    />
 
     <v-data-table
       id="table"
@@ -54,13 +62,13 @@
           <v-icon color="red" class="mr-3" @click="removeTodo(item.id)">
             mdi-window-close
           </v-icon>
-          <v-icon color="green">
+          <v-icon color="green" @click="editTodo(item.id)">
             mdi-content-save
           </v-icon>
         </div>
       </template>
     </v-data-table>
-    <div class="text-center pt-2">
+    <div class="text-center pt-2" id="pagination">
       <v-pagination v-model="page" :length="pageCount"></v-pagination>
       <v-text-field
         height="100%"
@@ -109,6 +117,9 @@ export default class TodoList extends Vue {
 
   public removeTodo(todoItemID: string): void {
     this.$emit("removeTodo", todoItemID);
+  }
+  public editTodo(todoItemID: string): void {
+    this.$emit("editTodo", todoItemID, this.editData);
   }
 }
 </script>
@@ -169,7 +180,26 @@ li {
   background: rgb(235, 231, 231);
 }
 
+.editContent {
+  display: inline;
+  width: 15%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+}
+
+#pagination {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+}
+
 #table {
-  width: 100%;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
 }
 </style>

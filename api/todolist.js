@@ -115,4 +115,20 @@ router.delete("/", function(req, res) {
   res.send(true);
 });
 
+router.post("/edit", function(req, res) {
+  editTodoItemID = req.body.value;
+  payload = req.body.value2;
+
+  connection.query(
+    `UPDATE todolist SET name =('${payload}') where id =(${editTodoItemID})`,
+    function(err, result) {
+      if (err) throw err;
+      else {
+        console.log("edit data success");
+      }
+    }
+  );
+  res.send(true);
+});
+
 module.exports = router;
