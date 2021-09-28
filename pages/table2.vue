@@ -120,36 +120,6 @@ export default {
           id: 2,
           name: "Ice cream sandwich",
           calories: 200
-        },
-        {
-          id: 3,
-          name: "Eclair",
-          calories: 128
-        },
-        {
-          id: 4,
-          name: "Cupcake",
-          calories: 140
-        },
-        {
-          id: 5,
-          name: "Gingerbread",
-          calories: 159
-        },
-        {
-          id: 6,
-          name: "Jelly bean",
-          calories: 110
-        },
-        {
-          id: 7,
-          name: "Lollipop",
-          calories: 132
-        },
-        {
-          id: 8,
-          name: "Honeycomb",
-          calories: 45
         }
       ];
     },

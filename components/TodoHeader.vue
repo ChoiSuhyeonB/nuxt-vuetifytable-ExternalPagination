@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h2>VueVirtualScroller</h2>
+    <h2>Vue table pagination</h2>
   </header>
 </template>
 

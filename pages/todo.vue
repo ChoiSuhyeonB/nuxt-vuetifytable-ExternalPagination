@@ -107,7 +107,7 @@ export default class MainComponent extends Vue {
     await AxiosInstance.deleteClear(this.deleteTodoItem).then(res => {
       console.log("delete id: " + this.deleteTodoItem);
     });
-    //this.fetchData();
+    this.fetchData();
   }
 
   // infinite scroll 구현

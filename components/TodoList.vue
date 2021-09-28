@@ -1,5 +1,5 @@
 <template>
-  <div id="table">
+  <div>
     <!-- infiniteScroll -->
     <!-- <ul v-if="$store.state.items">
       <li v-for="(todoItem, index) in $store.state.items" :key="index">
@@ -42,16 +42,26 @@
       :headers="headers"
       v-if="$store.state.items"
       :items="this.$store.state.items"
+      item-key="id"
       :page.sync="page"
       :items-per-page="itemsPerPage"
       hide-default-footer
       class="elevation-1"
       @page-count="pageCount = $event"
-      @click:row="clickTable($event)"
-    ></v-data-table>
+    >
+      <template v-slot:[`item.actions`]="{ item }">
+        <div>
+          <v-icon color="red" class="mr-3" @click="removeTodo(item.id)">
+            mdi-window-close
+          </v-icon>
+          <v-icon color="green">
+            mdi-content-save
+          </v-icon>
+        </div>
+      </template>
+    </v-data-table>
     <div class="text-center pt-2">
       <v-pagination v-model="page" :length="pageCount"></v-pagination>
-
       <v-text-field
         height="100%"
         :value="itemsPerPage"
@@ -76,7 +86,6 @@ import { Component, Vue, Prop, Emit } from "nuxt-property-decorator";
 @Component
 export default class TodoList extends Vue {
   Data: string[] = [""];
-
   editData: string = "";
   page: number = 1;
   pageCount: number = 0;
@@ -88,43 +97,18 @@ export default class TodoList extends Vue {
       sortable: false,
       value: "name"
     },
-    { text: "ID", value: "id" }
+    { text: "ID", value: "id" },
+    { text: "Action", value: "actions" }
   ];
+
   //computed
   get url() {
     // return "/api/todolist/" + this.$store.state.page;
     return "/api/todolist/";
   }
-  // public async infiniteScroll($state: {
-  //   loaded: () => void;
-  //   complete: () => void;
-  // }) {
-  //   setTimeout(async => {
-  //     //this.page = this.page + 10;
-  //     this.$store.commit("changePage", this.$store.state.page + 10);
-  //     this.Data = [];
-  //     this.$axios
-  //       .get(this.url)
-  //       .then(res => {
-  //         if (res && res.data.length > 1) {
-  //           res.data.forEach((todoItem: any) => this.Data.push(todoItem));
-  //           this.Data.forEach((todoItem: any) =>
-  //             this.$store.commit("pushTodoItems", todoItem)
-  //           );
 
-  //           $state.loaded();
-  //         } else {
-  //           $state.complete();
-  //         }
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //       });
-  //   }, 1000);
-  // }
-
-  public removeTodo(todoItem: string): void {
-    this.$emit("removeTodo", todoItem);
+  public removeTodo(todoItemID: string): void {
+    this.$emit("removeTodo", todoItemID);
   }
 }
 </script>
