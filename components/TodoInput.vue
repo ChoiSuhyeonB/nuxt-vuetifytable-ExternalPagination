@@ -7,7 +7,7 @@
       placeholder="Type what you have to do"
       @keyup.enter="addTodo"
     />
-    <span class="addContainer" @abort="addTodo">
+    <span class="addContainer" @abort="addTodo" @click="addTodo">
       <i
         class="addBtn fas fa-plus"
         aria-hidden="true"

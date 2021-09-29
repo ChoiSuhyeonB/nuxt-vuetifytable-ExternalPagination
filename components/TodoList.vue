@@ -50,7 +50,6 @@
       :headers="headers"
       v-if="$store.state.items"
       :items="this.$store.state.items"
-      item-key="id"
       :page.sync="page"
       :items-per-page="itemsPerPage"
       hide-default-footer

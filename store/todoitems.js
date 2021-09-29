@@ -2,7 +2,7 @@ export default {
   namespaced: true,
 
   state: () => ({
-    items: [""],
+    items: [],
     page: 0
   }),
   mutations: {
@@ -21,10 +21,11 @@ export default {
     callMutation({ state, commit }, { newMsg }) {
       commit("changeTodoItems", newMsg);
     }
-  },
-  getters: {
-    getMsg(state) {
-      return `${state.items} => Length : ${state.items.length}`;
-    }
   }
+  // ,
+  // getters: {
+  //   getMsg(state) {
+  //     return `${state.items} => Length : ${state.items.length}`;
+  //   }
+  // }
 };

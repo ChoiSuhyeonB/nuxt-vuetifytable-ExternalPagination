@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 
 router.use(express.json());
 
@@ -44,11 +45,10 @@ router.post("/", function(req, res) {
             email: uid // 이메일 아이디값을 payload
           },
           "apple", //비밀키
-          { expiresIn: "5m" },
+          { expiresIn: "1h" },
           function(err, token) {
-            console.log("token :" + token);
+            //console.log("token :" + token);
             res.send(token);
-            // res.send(token);
           }
         );
       } else {
